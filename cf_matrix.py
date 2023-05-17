@@ -19,7 +19,7 @@ def make_confusion_matrix(cf,
                           title: str = None,
                           mask: np.ndarray = None):
     """
-    This function will make a pretty plot of an sklearn Confusion Matrix cm using a Seaborn heatmap visualization.
+    This function will make a pretty plot of a sklearn Confusion Matrix cm using a Seaborn heatmap visualization.
 
     Arguments
     ---------
@@ -31,7 +31,7 @@ def make_confusion_matrix(cf,
 
     count:         If True, show the raw number in the confusion matrix. Default is True.
 
-    percent:     If True, show the proportions for each category. Default is True.
+    percent:       If True, show the proportions for each category. Default is True.
 
     cbar:          If True, show the color bar. The cbar values are based off the values in the confusion matrix.
                    Default is True.
@@ -48,6 +48,8 @@ def make_confusion_matrix(cf,
                    See https://matplotlib.org/examples/color/colormaps_reference.html
 
     title:         Title for the heatmap. Default is None.
+
+    mask:          Binary mask for confusion matrix (True means show cell of matrix, False means not)
 
     """
 
