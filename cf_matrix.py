@@ -11,10 +11,10 @@ def make_confusion_matrix(cf,
                           count: bool = True,
                           percent: bool = True,
                           cbar: bool = True,
-                          xyticks: bool = True,
-                          xyplotlabels: bool = True,
+                          xy_ticks: bool = True,
+                          xy_plot_labels: bool = True,
                           sum_stats: bool = True,
-                          figsize: bool = None,
+                          fig_size: bool = None,
                           cmap: str = 'Blues',
                           title: str = None,
                           mask: np.ndarray = None):
@@ -36,13 +36,13 @@ def make_confusion_matrix(cf,
     cbar:          If True, show the color bar. The cbar values are based off the values in the confusion matrix.
                    Default is True.
 
-    xyticks:       If True, show x and y ticks. Default is True.
+    xy_ticks:       If True, show x and y ticks. Default is True.
 
-    xyplotlabels:  If True, show 'True Label' and 'Predicted Label' on the figure. Default is True.
+    xy_plot_labels:  If True, show 'True Label' and 'Predicted Label' on the figure. Default is True.
 
     sum_stats:     If True, display summary statistics below the figure. Default is True.
 
-    figsize:       Tuple representing the figure size. Default will be the matplotlib rcParams value.
+    fig_size:       Tuple representing the figure size. Default will be the matplotlib rcParams value.
 
     cmap:          Colormap of the values displayed from matplotlib.pyplot.cm. Default is 'Blues'
                    See https://matplotlib.org/examples/color/colormaps_reference.html
@@ -93,19 +93,27 @@ def make_confusion_matrix(cf,
         stats_text = ""
 
     # SET FIGURE PARAMETERS ACCORDING TO OTHER ARGUMENTS
-    if figsize is None:
+    if fig_size is None:
         # Get default figure size if not set
-        figsize = plt.rcParams.get('figure.figsize')
+        fig_size = plt.rcParams.get('figure.fig_size')
 
-    if xyticks is False:
-        # Do not show categories if xyticks is False
+    if xy_ticks is False:
+        # Do not show categories if xy_ticks is False
         categories = False
 
     # MAKE THE HEATMAP VISUALIZATION
-    plt.figure(figsize=figsize)
-    sns.heatmap(cf, annot=box_labels, fmt="", cmap=cmap, cbar=cbar, xticklabels=categories, yticklabels=categories)
+    plt.figure(figsize=fig_size)
 
-    if xyplotlabels:
+    sns.heatmap(cf,
+                annot=box_labels,
+                fmt="",
+                cmap=cmap,
+                cbar=cbar,
+                xticklabels=categories,
+                yticklabels=categories,
+                mask=mask)
+
+    if xy_plot_labels:
         plt.ylabel('True label')
         plt.xlabel('Predicted label' + stats_text)
     else:
