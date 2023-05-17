@@ -35,4 +35,3 @@ This file contains a function called make_confusion_matrix which can be used to 
     title:          Title for the heatmap. Default is None.
 
     mask:           Binary mask for confusion matrix (True means to show cell of matrix, False means not)
-# confusion_matrix
